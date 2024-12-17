@@ -1,22 +1,25 @@
 import React from 'react';
-import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
-import HomeScreen from './screens/HomeScreen';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PlantDetails from './components/plantaDetails';
+import { Link } from 'react-router-dom';
+import PlantGrid from './components/plantaGrid';
 
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#4CAF50',
-    accent: '#FFC107',
-    background: '#F5F5F5',
-    text: '#333333',
-  },
-};
+const Home = () => (
+  <div>
+    <h1>Página Principal</h1>
+    <Link to="/planta">Ir a Planta</Link>
+    <Link to="/planta2">Ir a Planta2</Link>
+  </div>
+);
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
-      <HomeScreen />
-    </PaperProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/planta" element={<PlantDetails />} />
+        <Route path="/planta2" element={<PlantGrid />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

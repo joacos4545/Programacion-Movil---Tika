@@ -1,11 +1,17 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
 
 const AddSpaceButton = () => {
   return (
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>Añadir espacio</Text>
-    </TouchableOpacity>
+    <Button
+      mode="contained"
+      onPress={() => console.log('Añadir espacio')}
+      style={styles.button}
+      labelStyle={styles.label}
+    >
+      Añadir espacio
+    </Button>
   );
 };
 
@@ -13,14 +19,16 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     backgroundColor: '#4CAF50',
-    paddingVertical: 15,
-    alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: 50, 
+    alignSelf: 'center', 
+    width: '90%', 
+    height: 30, 
+    justifyContent: 'center', 
   },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+  label: {
+    color: '#FFFFFF', 
     fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

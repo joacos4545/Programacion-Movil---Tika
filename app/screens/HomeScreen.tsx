@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import PlantCard from '../components/PlantCard ';
+import { View, StyleSheet } from 'react-native';
+import SearchBar from '../components/SearchBar';
+import WeatherWidget from '../components/WeatherWidget';
+import PlantCard from '../components/PlantCard';
 import AddSpaceButton from '../components/AddSpaceButton';
+import BottomNav from '../components/BottomNavigation';
 
 const spaces = [
-  { id: '1', name: 'Jardín', plants: 0 },
+  { id: '1', name: 'Jardín', plants: 2 },
   { id: '2', name: 'Interior', plants: 0 },
   { id: '3', name: 'Balcón', plants: 0 },
 ];
@@ -12,15 +15,17 @@ const spaces = [
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Mis Plantas</Text>
-      <FlatList
-        data={spaces}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <PlantCard name={item.name} plants={item.plants} />
-        )}
-      />
+      <WeatherWidget />
+      <SearchBar />
+      <View style={styles.list}>
+        {spaces.map((space) => (
+          <PlantCard key={space.id} name={space.name} plants={space.plants} onPress={function (): void {
+            throw new Error('Function not implemented.');
+          } } />
+        ))}
+      </View>
       <AddSpaceButton />
+      <BottomNav />
     </View>
   );
 };
@@ -28,13 +33,11 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
+    padding: 0,
+    backgroundColor: '#F5F5F5',
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  list: {
+    marginVertical: 10,
   },
 });
 
